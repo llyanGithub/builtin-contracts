@@ -1,10 +1,10 @@
 pragma solidity ^0.4.23;
-import "./prototype.sol";
-import "./energy.sol";
-import "./authority.sol";
-import "./extension.sol";
-import "./params.sol";
-import "./voting.sol";
+import "./interface/prototype.sol";
+import "./interface/energy.sol";
+import "./interface/authority.sol";
+import "./interface/extension.sol";
+import "./interface/params.sol";
+import "./interface/voting.sol";
 
 library Builtin {
     function getAuthority() internal pure returns(Authority) {
