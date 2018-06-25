@@ -7,6 +7,9 @@ import "./interface/params.sol";
 import "./interface/voting.sol";
 
 library Builtin {
+    //
+    // native contract instance
+    //
     function getAuthority() internal pure returns(Authority) {
         return Authority(uint160(bytes9("Authority")));
     }
@@ -26,7 +29,27 @@ library Builtin {
     function getVoting() internal pure returns(Voting) {
         return Voting(uint160(bytes6("Voting")));
     }
-    
+
+
+    // 
+    // energy
+    //
+    Energy constant energy = Energy(uint160(bytes6("Energy")));
+    function $energy(address self) internal view returns(uint256 amount){
+        return energy.balanceOf(self);
+    }
+
+    function $transferEnergy(address self, uint256 amount) internal{
+        energy.transfer(self, amount);
+    }
+
+    function $moveEnergyTo(address self, address to, uint256 amount) internal{
+        energy.move(self, to, amount);
+    }
+
+    //
+    // prototype
+    //
     Prototype constant prototype = Prototype(uint160(bytes9("Prototype")));
     function $master(address self) internal view returns(address){
         return prototype.master(self);
